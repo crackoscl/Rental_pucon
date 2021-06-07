@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Usuarios,Vehiculos,Extras,Arriendos
+from .models import Usuarios, Vehiculos, Extras, Arriendos
 
 # Register your models here.
 

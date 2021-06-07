@@ -20,7 +20,7 @@ from app.views import registro
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('app.urls')),
+    path('', include('app.urls')),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('registro/', registro, name='registro'),

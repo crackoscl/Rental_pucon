@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 import environ
 
-# environ init 
+# environ init
 env = environ.Env()
 environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG',default=False)
+DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS',default=[]))
+ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS', default=[]))
 
 # Application definition
 
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'rental_pucon.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [(os.path.join(BASE_DIR, 'templates')),],
+        'DIRS': [(os.path.join(BASE_DIR, 'templates')), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,9 +120,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-
 
 
 # Static files (CSS, JavaScript, Images)
