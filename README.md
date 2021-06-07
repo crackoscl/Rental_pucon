@@ -59,7 +59,7 @@ $ python manage.py runserver
 
 ## Capturas 📖
 
-![Alt text](screenshot 1.png?raw=true "Optional Title")
+![Login](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%201.png?raw=true "Optional Title")
 
 ![Screenshot](screenshot 2.png)
 
