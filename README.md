@@ -59,7 +59,7 @@ $ python manage.py runserver
 
 ## Capturas 📖
 
-![Screenshot](screenshot 1.png)
+![Alt text](/screenshot 1.png?raw=true "Optional Title")
 
 ![Screenshot](screenshot 2.png)
 
