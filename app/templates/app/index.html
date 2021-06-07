@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenidos %}
+
+    <div class="container">
+        <div class="row">
+            <table class="table">
+              {% if user.is_authenticated %} 
+              {% if user.is_trabajador %}
+                <thead>
+                  <tr>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for vehiculo in vehiculos %}
+                  <tr>
+                    <td>{{vehiculo.marca}}</td>
+                    <td>{{vehiculo.modelo}}</td>
+                    <th>{{vehiculo.estado}}</th>
+                    <th>{{vehiculo.usuario_id}}</th>
+                    
+                    {% if vehiculo.estado == 'reservado'%}
+                    <td><a href="{% url 'app:arrendar' pk=vehiculo.id %}" class="btn btn-success">Arrendar</a></td>
+                    {% elif vehiculo.estado == 'arrendado'%}
+                    <td><a href="{% url 'app:devolver' pk=vehiculo.id %}" class="btn btn-warning">Devolver</a></td>
+                    {% else %}
+                    <td><a href="{% url 'app:verficha' pk=vehiculo.id %}" class="btn btn-primary">VerFicha</a></td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+
+                {% else %}
+
+                  <thead>
+                    <tr>
+                      <th scope="col">Marca</th>
+                      <th scope="col">Modelo</th>
+                      <th scope="col">Año</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for vehiculo in vehiculos %}
+                    <tr>
+                      <td>{{vehiculo.marca}}</td>
+                      <td>{{vehiculo.modelo}}</td>
+                      <th>{{vehiculo.year}}</th>
+                      <td><a href="{% url 'app:reservar' pk=vehiculo.id %}" class="btn btn-success">reservar</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                  {% endif %}
+                  {% endif %}
+              </table> 
+        </div>
+    </div>
+
+
+{% block javascript %}
+<script src="{% static 'app/main.js'%}"></script>
+{% endblock %}
+
+{% endblock contenidos %}
+    
