@@ -6,7 +6,7 @@
         <div class="row">
             <form action="{% url 'app:reservar' pk=pk.id %}" method="POST">
                 {% csrf_token %}
-                <h2>Reserva de Vehiculo</h2>
+                <h2>Reserva de Vehículo</h2>
                 <p>Modelo: {{pk.modelo}}</p>
                 <p>Marca: {{pk.marca}}</p>
                 <p>Precio/dia: ${{pk.precio_dia}}</p>

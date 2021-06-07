@@ -57,24 +57,27 @@ _Inicio del servidor de desarrollo._
 $ python manage.py runserver
 ```
 
+## Capturas 📖
+
+![Screenshot](screenshot 1.png)
+
+![Screenshot](screenshot 2.png)
+
+![Screenshot](screenshot 3.png)
+
+![Screenshot](screenshot 4.png)
+
+![Screenshot](screenshot 5.png)
+
+![Screenshot](screenshot 6.png)
+
+![Screenshot](screenshot 7.png)
 
 
-_Que cosas necesitas para instalar el software y como instalarlas_
-
-```
-Da un ejemplo
-```
 
 ## Licencia 📄
 
 Este proyecto está bajo la Licencia (GPLv3)
-
-## Expresiones de Gratitud 🎁
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
 
 
 ---

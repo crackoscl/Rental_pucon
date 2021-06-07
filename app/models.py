@@ -14,6 +14,9 @@ class Usuarios(AbstractUser):
     def __str__(self):
         return self.username
 
+    class Meta:
+        verbose_name_plural = "Usuarios"
+
 
 class Vehiculos(models.Model):
     marca = models.CharField(max_length=45)
@@ -26,6 +29,9 @@ class Vehiculos(models.Model):
 
     def __str__(self):
         return self.marca + "--" + self.modelo + "-->" + str(self.id)
+
+    class Meta:
+        verbose_name_plural = "Vehiculos"
 
 
 class Arriendos(models.Model):
@@ -46,6 +52,9 @@ class Arriendos(models.Model):
     def __str__(self):
         return str(self.usuario_id) + '--' + str(self.vehiculo_id)
 
+    class Meta:
+        verbose_name_plural = "Arriendos"
+
 
 class Extras(models.Model):
     nombre = models.CharField(max_length=45)
@@ -53,3 +62,6 @@ class Extras(models.Model):
 
     def __str__(self):
         return str(self.vehiculo_id) + "--" + self.nombre
+
+    class Meta:
+        verbose_name_plural = "Extras"
