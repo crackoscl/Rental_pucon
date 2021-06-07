@@ -59,9 +59,10 @@ $ python manage.py runserver
 
 ## Capturas 📖
 
-![Login](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%201.png?raw=true "Optional Title")
+![Login](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%201.png?raw=true "Login Usuarios")
 
 ![Screenshot](screenshot 2.png)
+![Cliente](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%202.png?raw=true "Usuario Cliente")
 
 ![Screenshot](screenshot 3.png)
 
