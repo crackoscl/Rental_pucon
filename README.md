@@ -17,7 +17,7 @@ $ virtualenv venv
 $ source venv/bin/activate
 
 ```
-_Instalar dependecias._
+_Instalar dependencias._
 
 ```
 $ pip install -r requeriments.txt
@@ -45,7 +45,7 @@ $ python manage.py makemigrations
 $ python manage.py migrate
 
 ```
-_Creacion de Super Usuario._
+_Creación de Super Usuario._
 
 ```
 $ python manage.py createsuperuser
