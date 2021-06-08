@@ -45,7 +45,7 @@ $ python manage.py makemigrations
 $ python manage.py migrate
 
 ```
-_Creacion de Super Usuario._
+_Creación de Super Usuario._
 
 ```
 $ python manage.py createsuperuser
