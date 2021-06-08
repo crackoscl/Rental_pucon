@@ -59,21 +59,26 @@ $ python manage.py runserver
 
 ## Capturas 📖
 
+_LOGIN._
 ![Login](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%201.png?raw=true "Login Usuarios")
 
-![Screenshot](screenshot 2.png)
+_USUARIO CLIENTE._
 ![Cliente](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%202.png?raw=true "Usuario Cliente")
 
-![Screenshot](screenshot 3.png)
+_RESERVA VEHÍCULO CLIENTE._
+![Reserva Vehículo Cliente](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%203.png?raw=true "Reserva Vehículo Cliente")
 
-![Screenshot](screenshot 4.png)
+_USUARIO TRABAJADOR._
+![Usuario Trabajador](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%204.png?raw=true "Usuario Trabajador")
 
-![Screenshot](screenshot 5.png)
+_CONFIRMACIÓN DE ARRIENDO._
+![Confirmación de Arriendo](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%205.png?raw=true "Confirmación de Arriendo")
 
-![Screenshot](screenshot 6.png)
+_FORMULARIO DE DEVOLUCÍON._
+![Formulario Devolucíon](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%206.png?raw=true "Formulario de Devolucíon")
 
-![Screenshot](screenshot 7.png)
-
+_FORMULARIO DE REGISTRO._
+![Formulario Registro](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%207.png?raw=true "Formulario de Registro")
 
 
 ## Licencia 📄
