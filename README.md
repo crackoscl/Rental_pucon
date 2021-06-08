@@ -26,14 +26,14 @@ $ pip install -r requeriments.txt
 _Agregar archivo .env en carpeta rental_pucon._
 
 ```
-DEBUG=True
-SECRET_KEY=django-insecure-k0^(-uulsdvvr%fj)p@*azebx)jd3ueallalahsswdedkewhdweklz^
-ALLOWED_HOSTS=127.0.0.1,localhost
-POSTGRES_DB=nombrebasededatos
-POSTGRES_USER=usuariopostgres
-POSTGRES_PASSWORD=1we2342122
-POSTGRES_HOST=localhost
-POSTGRES_PORT=puertopostgress
+DEBUG=
+SECRET_KEY=
+ALLOWED_HOSTS=
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_HOST=
+POSTGRES_PORT=
 ```
 
 _Migraciones._
