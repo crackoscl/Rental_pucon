@@ -60,25 +60,25 @@ $ python manage.py runserver
 ## Capturas 📖
 
 _LOGIN._
-![Login](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%201.png?raw=true "Login Usuarios")
+![Login](https://github.com/crackoscl/Rental_pucon/blob/main/screenshots/screenshot%201.png?raw=true "Login Usuarios")
 
 _USUARIO CLIENTE._
-![Cliente](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%202.png?raw=true "Usuario Cliente")
+![Cliente](https://github.com/crackoscl/Rental_pucon/blob/main/screenshots/screenshot%202.png?raw=true "Usuario Cliente")
 
 _RESERVA VEHÍCULO CLIENTE._
-![Reserva Vehículo Cliente](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%203.png?raw=true "Reserva Vehículo Cliente")
+![Reserva Vehículo Cliente](https://github.com/crackoscl/Rental_pucon/blob/main/screenshots/screenshot%203.png?raw=true "Reserva Vehículo Cliente")
 
 _USUARIO TRABAJADOR._
-![Usuario Trabajador](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%204.png?raw=true "Usuario Trabajador")
+![Usuario Trabajador](https://github.com/crackoscl/Rental_pucon/blob/main/screenshots/screenshot%204.png?raw=true "Usuario Trabajador")
 
 _CONFIRMACIÓN DE ARRIENDO._
-![Confirmación de Arriendo](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%205.png?raw=true "Confirmación de Arriendo")
+![Confirmación de Arriendo](https://github.com/crackoscl/Rental_pucon/blob/main/screenshots/screenshot%205.png?raw=true "Confirmación de Arriendo")
 
 _FORMULARIO DE DEVOLUCÍON._
-![Formulario Devolucíon](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%206.png?raw=true "Formulario de Devolucíon")
+![Formulario Devolucíon](https://github.com/crackoscl/Rental_pucon/blob/main/screenshots/screenshot%206.png?raw=true "Formulario de Devolucíon")
 
 _FORMULARIO DE REGISTRO._
-![Formulario Registro](https://github.com/crackoscl/Rental_pucon/blob/main/screenshot%207.png?raw=true "Formulario de Registro")
+![Formulario Registro](https://github.com/crackoscl/Rental_pucon/blob/main/screenshots/screenshot%207.png?raw=true "Formulario de Registro")
 
 
 ## Licencia 📄
