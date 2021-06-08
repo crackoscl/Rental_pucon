@@ -17,7 +17,7 @@ $ virtualenv venv
 $ source venv/bin/activate
 
 ```
-_Instalar dependecias._
+_Instalar dependencias._
 
 ```
 $ pip install -r requeriments.txt
