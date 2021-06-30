@@ -1,4 +1,5 @@
 
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -40,7 +41,7 @@ class Arrendar(LoginRequiredMixin, UserPassesTestMixin, View):
         vehiculo.update(
             estado='arrendado',
         )
-        print(usuario)
+
         Arriendos.objects.create(
             usuario_id=usuario,
             vehiculo_id=a_vehiculo
@@ -56,7 +57,9 @@ class Devolver(LoginRequiredMixin, UserPassesTestMixin, View):
     template_name = "app/devolver.html"
 
     def get(self, request, *args, **kwargs):
-        arriendo = get_object_or_404(Arriendos, vehiculo_id=self.kwargs['pk'])
+        arriendo = get_object_or_404(
+            Arriendos, vehiculo_id=self.kwargs['pk'], fecha_termino=None)
+
         form = ArrendarForm(instance=arriendo)
         return render(request, self.template_name, {'form': form, 'pk': arriendo})
 
@@ -66,13 +69,23 @@ class Devolver(LoginRequiredMixin, UserPassesTestMixin, View):
             formulario_data = form.cleaned_data
             arriendo = Arriendos.objects.filter(id=kwargs['pk'])
             vehiculo = arriendo[0].vehiculo_id
+            fecha_inicio = arriendo
+            fecha_termino = timezone.now()
+            diferencia_hora = fecha_termino - fecha_inicio[0].fecha_inicio
+            total_segundos = diferencia_hora.seconds
+            minutos = total_segundos / 60
+            precio_dia = Vehiculos.objects.get(id=vehiculo.id).precio_dia
+            precio_hora = precio_dia / 24
+            precio_minuto = precio_hora / 60
+            precio = round(precio_minuto * minutos)
             arriendo.update(
                 observaciones=formulario_data['observaciones'],
-                precio=4560,
-                fecha_termino=timezone.now()
+                precio=precio,
+                fecha_termino=fecha_termino
             )
             vehiculo = Vehiculos.objects.filter(id=vehiculo.id).update(
                 estado='disponible',
+
             )
             return redirect('app:principal')
 
@@ -84,7 +97,7 @@ class Devolver(LoginRequiredMixin, UserPassesTestMixin, View):
         return is_trabajador(self.request.user)
 
 
-class Reservar(LoginRequiredMixin, View):
+class Reservar(LoginRequiredMixin, UserPassesTestMixin, View):
     login_url = '/login/'
     template_name = "app/reservar.html"
 
@@ -100,8 +113,11 @@ class Reservar(LoginRequiredMixin, View):
         )
         return redirect('app:principal')
 
+    def test_func(self):
+        return rol_usuario(self.request.user)
 
-class Ver_ficha(LoginRequiredMixin, View):
+
+class Ver_ficha(LoginRequiredMixin, UserPassesTestMixin, View):
     login_url = '/login/'
     template_name = "app/verficha.html"
 
@@ -115,15 +131,17 @@ class Ver_ficha(LoginRequiredMixin, View):
 
 
 def registro(request):
-    context = {}
+    context = {
+        'form': RegisterUserForm()
+    }
     if request.method == 'POST':
-        form = RegisterUserForm(request.POST)
+        form = RegisterUserForm(data=request.POST)
         if form.is_valid():
             form.save()
+            user = authenticate(
+                username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+            login(request, user)
             return redirect(to="app:principal")
         else:
-            context['form'] = RegisterUserForm
-    else:
-        form = RegisterUserForm()
-        context['form'] = form
+            context['form'] = form
     return render(request, 'registration/registro.html', context)

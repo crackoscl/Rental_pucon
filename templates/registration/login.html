@@ -1,59 +1,63 @@
 {% extends 'base.html' %}
 
-
-
 {% block contenidos %}
 
 <div class="container">
     <div class="row justify-content-center">
-        {% if form.errors %}
-        <div class="alert alert-warning" role="alert">
-            <h4 class="alert-heading">Los datos de autenticación no corresponden. Trata nuevamente.</h4>
-        </div>
-    {% endif %}
-
-    {% if next %}
-        {% if user.is_authenticated %}
-            <div class="alert alert-warning" role="alert">
-                <h4 class="alert-heading">Tu cuenta no tiene acceso a este recurso.</h4>
-                <p>Debes tener los privilegios, contacta al administrador.</p>
-            </div>
-            {% else %}
-            <div class="alert alert-warning" role="alert">
-                <p>Usted trató de entrar a una página protegida y aún no está autenticado.</p>
-            </div>
-        {% endif %}
-    {% endif %}
-
-    <form class="col-md-8" method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-
         {% if next %}
-            <input type="hidden" name="next" value="{{ next }}" />
+        {% if user.is_authenticated %}
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Tu cuenta no tiene acceso a este recurso.</h4>
+            <p>Debes tener los privilegios, contacta al administrador.</p>
+        </div>
+        {% else %}
+        <div class="alert alert-warning" role="alert">
+            <p>Usted trató de entrar a una página protegida y aún no está autenticado.</p>
+        </div>
+        {% endif %}
         {% endif %}
 
-        <div class="control-group">
-            <label class="control-label" for="username">{{form.username.label}}</label>
-            <div class="controls">
-                <input class="form-control" type="text" id="username" name="username" placeholder="Nombre de Usuario">
+        <form class="col-md-8" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <h1>Login Usuarios</h1>
+            {% if next %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            {% endif %}
+
+            <div class="control-group">
+                <label class="control-label" for="username">{{form.username.label}}</label>
+                <div class="controls">
+                    <input class="form-control" type="text" id="username" name="username" placeholder="Manuel">
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="password">{{form.password.label}}</label>
-            <div class="controls">
-                <input class="form-control" type="password" name="password" id="password" placeholder="Contraseña">
+            <div class="control-group">
+                <label class="control-label" for="password">{{form.password.label}}</label>
+                <div class="controls">
+                    <input class="form-control" type="password" name="password" id="password" placeholder="Contraseña">
+                </div>
             </div>
-        </div><br>
-<div class="d-flex justify-content-center">
-    <div class="control-group">
-        <div class="controls">
-            <button type="submit" class="btn btn-success">Enviar</button>
-        </div>
-    </div>
-</div>
-</form>
+            <br>
+            {% if form.errors %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Los datos de autenticación no corresponden. Trata nuevamente.</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+            <br>
+            <div class="d-flex justify-content-center">
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-success">Enviar</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
     </div>
 </div>
 
+{% block javascript %}
+
+{% endblock %}
 
 {% endblock %}

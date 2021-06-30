@@ -2,14 +2,14 @@
 
 {% block contenidos %}
 
-    <div class="container">
-        <div class="row">
-            <form action="{% url 'app:arrendar' pk=pk.id %}" method="POST">
-                {% csrf_token %}
-                 <h3>Esta seguro que desea Arrendar {{pk.marca}}-{{pk.modelo}}</h3>
-                <a href="{% url 'app:principal'%}" class="btn btn-danger">Cancelar</a>
-                <input type="submit" class="btn btn-success" value='Arrendar'>
-            </form>
-        </div>
+<div class="container">
+    <div class="row">
+        <form action="{% url 'app:arrendar' pk=pk.id %}" method="POST">
+            {% csrf_token %}
+            <h3>Esta seguro que desea Arrendar {{pk.marca}}-{{pk.modelo}}</h3>
+            <a href="{% url 'app:principal'%}" class="btn btn-danger">Cancelar</a>
+            <input type="submit" class="btn btn-success" value='Arrendar'>
+        </form>
     </div>
+</div>
 {% endblock contenidos %}
