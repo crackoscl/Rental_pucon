@@ -29,24 +29,24 @@ class RegisterUserForm(UserCreationForm):
 
     def clean_rut(self):
         rut_clean = (
-            re.sub("[^0-9kK]", "", str(self.cleaned_data.get('rut')))).lower()
-        if rut_clean.count("k") > 0:
-            if rut_clean.count("k") > 1 or rut_clean[-1] != "k":
-                raise ValidationError("formato de RUT incorrecto")
+            re.sub('[^0-9kK]', '', str(self.cleaned_data.get('rut')))).lower()
+        if rut_clean.count('k') > 0:
+            if rut_clean.count('k') > 1 or rut_clean[-1] != 'k':
+                raise ValidationError('formato de RUT incorrecto')
         if len(rut_clean) < 8 or len(rut_clean) > 9:
             raise ValidationError(
-                "El número de digitos ingresados no es correcto!")
+                'El número de digitos ingresados no es correcto!')
         rut_clean_no_digit = int(rut_clean[:-1])
         reversed_digits = map(int, reversed(str(rut_clean_no_digit)))
         factors = cycle(range(2, 8))
         s = sum(d * f for d, f in zip(reversed_digits, factors))
         digit = (-s) % 11
         if digit == 10:
-            digit = "k"
+            digit = 'k'
         if str(digit) == rut_clean[-1]:
             return rut_clean
         else:
-            raise ValidationError("El Digito Verificador no corresponde!")
+            raise ValidationError('El Digito Verificador no corresponde!')
 
     class Meta:
         model = User

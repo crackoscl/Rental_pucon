@@ -15,7 +15,7 @@ class Usuarios(AbstractUser):
         return self.username
 
     class Meta:
-        verbose_name_plural = "Usuarios"
+        verbose_name_plural = 'Usuarios'
 
 
 class Vehiculos(models.Model):
@@ -28,10 +28,10 @@ class Vehiculos(models.Model):
     usuario_id = ForeignKey(Usuarios, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.marca + "--" + self.modelo + "-->" + str(self.id)
+        return self.marca + '--' + self.modelo + '-->' + str(self.id)
 
     class Meta:
-        verbose_name_plural = "Vehiculos"
+        verbose_name_plural = 'Vehiculos'
 
 
 class Arriendos(models.Model):
@@ -53,7 +53,7 @@ class Arriendos(models.Model):
         return str(self.usuario_id) + '--' + str(self.vehiculo_id)
 
     class Meta:
-        verbose_name_plural = "Arriendos"
+        verbose_name_plural = 'Arriendos'
 
 
 class Extras(models.Model):
@@ -61,7 +61,7 @@ class Extras(models.Model):
     vehiculo_id = ForeignKey(Vehiculos, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.vehiculo_id) + "--" + self.nombre
+        return str(self.vehiculo_id) + '--' + self.nombre
 
     class Meta:
-        verbose_name_plural = "Extras"
+        verbose_name_plural = 'Extras'

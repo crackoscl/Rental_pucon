@@ -11,15 +11,15 @@ from .user_permissions import is_trabajador, rol_usuario
 
 class Principal(LoginRequiredMixin, UserPassesTestMixin, View):
     login_url = '/login/'
-    template_name = "app/index.html"
+    template_name = 'app/index.html'
 
     def get(self, request, *args, **kwargs):
         if request.user.is_trabajador:
             vehiculos = Vehiculos.objects.all()
-            return render(request, self.template_name, {"vehiculos": vehiculos})
+            return render(request, self.template_name, {'vehiculos': vehiculos})
         else:
             vehiculos = Vehiculos.objects.filter(estado='disponible')
-            return render(request, self.template_name, {"vehiculos": vehiculos})
+            return render(request, self.template_name, {'vehiculos': vehiculos})
 
     def test_func(self):
         return rol_usuario(self.request.user)
@@ -27,24 +27,20 @@ class Principal(LoginRequiredMixin, UserPassesTestMixin, View):
 
 class Arrendar(LoginRequiredMixin, UserPassesTestMixin, View):
     login_url = '/login/'
-    template_name = "app/arrendar.html"
+    template_name = 'app/arrendar.html'
 
     def get(self, request, *args, **kwargs):
         auto = get_object_or_404(Vehiculos, pk=self.kwargs['pk'])
-        return render(request, self.template_name, {"pk": auto})
+        return render(request, self.template_name, {'pk': auto})
 
     def post(self, request, *args, **kwargs):
-        vehiculo = Vehiculos.objects.filter(id=self.kwargs['pk'])
-        v_arriendo = list(vehiculo)
-        usuario = Usuarios.objects.get(id=v_arriendo[0].usuario_id_id)
-        a_vehiculo = Vehiculos.objects.get(id=v_arriendo[0].id)
-        vehiculo.update(
-            estado='arrendado',
-        )
-
+        vehiculo = Vehiculos.objects.get(id=self.kwargs['pk'])
+        usuario = vehiculo.usuario_id
+        vehiculo.estado = 'arrendado'
+        vehiculo.save()
         Arriendos.objects.create(
             usuario_id=usuario,
-            vehiculo_id=a_vehiculo
+            vehiculo_id=vehiculo
         )
         return redirect('app:principal')
 
@@ -54,7 +50,7 @@ class Arrendar(LoginRequiredMixin, UserPassesTestMixin, View):
 
 class Devolver(LoginRequiredMixin, UserPassesTestMixin, View):
     login_url = '/login/'
-    template_name = "app/devolver.html"
+    template_name = 'app/devolver.html'
 
     def get(self, request, *args, **kwargs):
         arriendo = get_object_or_404(
@@ -67,28 +63,24 @@ class Devolver(LoginRequiredMixin, UserPassesTestMixin, View):
         form = ArrendarForm(request.POST)
         if form.is_valid():
             formulario_data = form.cleaned_data
-            arriendo = Arriendos.objects.filter(id=kwargs['pk'])
-            vehiculo = arriendo[0].vehiculo_id
-            fecha_inicio = arriendo
+            arriendo = Arriendos.objects.get(id=kwargs['pk'])
+            vehiculo = arriendo.vehiculo_id
             fecha_termino = timezone.now()
-            diferencia_hora = fecha_termino - fecha_inicio[0].fecha_inicio
+            diferencia_hora = fecha_termino - arriendo.fecha_inicio
             total_segundos = diferencia_hora.seconds
             minutos = total_segundos / 60
-            precio_dia = Vehiculos.objects.get(id=vehiculo.id).precio_dia
+            precio_dia = vehiculo.precio_dia
             precio_hora = precio_dia / 24
             precio_minuto = precio_hora / 60
             precio = round(precio_minuto * minutos)
-            arriendo.update(
-                observaciones=formulario_data['observaciones'],
-                precio=precio,
-                fecha_termino=fecha_termino
-            )
-            vehiculo = Vehiculos.objects.filter(id=vehiculo.id).update(
-                estado='disponible',
+            arriendo.observaciones = formulario_data['observaciones']
+            arriendo.precio = precio
+            arriendo.fecha_termino = fecha_termino
+            arriendo.save()
+            vehiculo.estado = 'disponible'
+            vehiculo.save()
 
-            )
             return redirect('app:principal')
-
         else:
             form = ArrendarForm()
             return render(request, self.template_name, {'form': form})
@@ -99,18 +91,19 @@ class Devolver(LoginRequiredMixin, UserPassesTestMixin, View):
 
 class Reservar(LoginRequiredMixin, UserPassesTestMixin, View):
     login_url = '/login/'
-    template_name = "app/reservar.html"
+    template_name = 'app/reservar.html'
 
     def get(self, request, *args, **kwargs):
         auto = get_object_or_404(Vehiculos, pk=self.kwargs['pk'])
         extras = auto.extras_set.all()
-        return render(request, self.template_name, {"pk": auto, 'extras': extras})
+        return render(request, self.template_name, {'pk': auto, 'extras': extras})
 
     def post(self, request, *args, **kwargs):
-        Vehiculos.objects.filter(id=self.kwargs['pk']).update(
-            estado='reservado',
-            usuario_id=request.user.id
-        )
+        vehiculos = Vehiculos.objects.get(id=self.kwargs['pk'])
+        vehiculos.estado = 'reservado'
+        vehiculos.usuario_id = Usuarios.objects.get(id=request.user.id)
+        vehiculos.save()
+
         return redirect('app:principal')
 
     def test_func(self):
@@ -119,12 +112,12 @@ class Reservar(LoginRequiredMixin, UserPassesTestMixin, View):
 
 class Ver_ficha(LoginRequiredMixin, UserPassesTestMixin, View):
     login_url = '/login/'
-    template_name = "app/verficha.html"
+    template_name = 'app/verficha.html'
 
     def get(self, request, *args, **kwargs):
         auto = get_object_or_404(Vehiculos, pk=self.kwargs['pk'])
         extras = auto.extras_set.all()
-        return render(request, self.template_name, {"pk": auto, 'extras': extras})
+        return render(request, self.template_name, {'pk': auto, 'extras': extras})
 
     def test_func(self):
         return is_trabajador(self.request.user)
@@ -141,7 +134,7 @@ def registro(request):
             user = authenticate(
                 username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
             login(request, user)
-            return redirect(to="app:principal")
+            return redirect(to='app:principal')
         else:
             context['form'] = form
     return render(request, 'registration/registro.html', context)
